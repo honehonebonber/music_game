@@ -1630,6 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicStart: 4
+  csvFile: {fileID: 4900000, guid: e1d3a2fb3b819459fa0e665b9dc1b129, type: 3}
 --- !u!1 &934490219
 GameObject:
   m_ObjectHideFlags: 0

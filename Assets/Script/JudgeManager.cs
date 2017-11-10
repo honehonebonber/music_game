@@ -15,11 +15,9 @@ public class JudgeManager : MonoBehaviour {
 	void Start(){
 		instance = this;
 		csv = CSVReader.SplitCsvGrid (csvFile.text);
-		int bpm = int.Parse (csv [0, 0]);
-		float interval = 1 / (bpm / 60.0f) / 2;
 	}
 	public void Judge(JudgeButton judgeButton){
-		/*if (csv [judgeButton.Position, ] == "1") {
+		/*if (csv [judgeButton.Position, TimeManager.instance.nowTime] == "1") {
 			
 		}*/
 	}

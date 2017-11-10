@@ -12,6 +12,7 @@ public class TimeManager : MonoBehaviour {
 	[SerializeField]
 	private Text timeText;
 	public float musicStart = 4.0f;
+	public float nowTime;
 	// 処理の時は (Time.time - musicStart);
 	// Use this for initialization
 	void Start () {
@@ -21,7 +22,8 @@ public class TimeManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timeText.text = (Time.time - musicStart).ToString();
+		nowTime = Time.time - musicStart;
+		timeText.text = (nowTime).ToString();
 	}
 
 	private IEnumerator StartMusic() {
