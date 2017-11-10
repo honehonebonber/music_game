@@ -38,8 +38,9 @@ public class NotesSpawnManager : MonoBehaviour {
 
 		stage = 0;
 		int bpm = int.Parse (csv [0, 0]);
-		interval = 1 / (bpm / 60.0f) / 2;
+		interval = 1 / (bpm / 60.0f) / 2 - 1.5f;
 		//print (interval);
+		//1.5秒前に生成
 		while (true) {
 			yield return new WaitForSeconds (interval);
 			stage += 1;
