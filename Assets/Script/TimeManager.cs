@@ -31,7 +31,7 @@ public class TimeManager : MonoBehaviour {
 			startLabel.text = i.ToString();
 			yield return new WaitForSeconds (1.0f);
 		}
-		Judge.instance.JudgeStart ();
+//		Judge.instance.JudgeStart ();
 		startLabel.text = "Start!";
 		yield return new WaitForSeconds (0.5f);
 		Destroy (startLabel);
