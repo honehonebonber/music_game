@@ -19,8 +19,8 @@ public class JudgeManager : MonoBehaviour {
 		float interval = 1 / (bpm / 60.0f) / 2;
 	}
 	public void Judge(JudgeButton judgeButton){
-		if (csv [judgeButton.Position, ] == "1") {
+		/*if (csv [judgeButton.Position, ] == "1") {
 			
-		}
+		}*/
 	}
 }
