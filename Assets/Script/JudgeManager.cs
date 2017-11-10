@@ -17,7 +17,7 @@ public class JudgeManager : MonoBehaviour {
 		csv = CSVReader.SplitCsvGrid (csvFile.text);
 	}
 	public void Judge(JudgeButton judgeButton){
-		if (csv [judgeButton.Position, TimeManager.instance.nowTime] == "1") {
+		if (csv [judgeButton.Position, NotesSpawnManager.instance.stage] == "1") {
 			
 		}
 	}

@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class NotesSpawnManager : MonoBehaviour {
 
+	public static NotesSpawnManager instance;
+
 	public GameObject notesPrefab;
 	public GameObject longNotesPrefab;
 	public GameObject releaseNotesPrefab;
 	public int notesPosition; 
 	public string[,] csv;
 	public TextAsset csvFile;
+
+
+	public int stage = 0;
+	public float interval;
+
+
 	// Use this for initialization
 	void Start () {
 		StartCoroutine("Spawn");
+		instance = this;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 	}
 
 
@@ -26,9 +36,9 @@ public class NotesSpawnManager : MonoBehaviour {
 		print (gameObject.name);
 		csv = CSVReader.SplitCsvGrid (csvFile.text);
 
-		int stage = 0;
+		stage = 0;
 		int bpm = int.Parse (csv [0, 0]);
-		float interval = 1 / (bpm / 60.0f) / 2;
+		interval = 1 / (bpm / 60.0f) / 2;
 		//print (interval);
 		while (true) {
 			yield return new WaitForSeconds (interval);
