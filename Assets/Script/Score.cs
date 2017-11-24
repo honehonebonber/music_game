@@ -16,8 +16,8 @@ public class Score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		scoreText.text = ("SCORE:" + Judge.score);
-		comboText.text = ("COMBO:" + Judge.combo);
-		highScoreText.text = ("HIGH SCORE:" + Judge.highScore);
+		scoreText.text = ("SCORE:" + JudgeManager.score);
+		comboText.text = ("COMBO:" + JudgeManager.combo);
+		highScoreText.text = ("HIGH SCORE:" + JudgeManager.highScore);
 	}
 }

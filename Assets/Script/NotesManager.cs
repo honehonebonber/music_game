@@ -5,11 +5,20 @@ using DG.Tweening;
 
 public class NotesManager : MonoBehaviour {
 	
-
+	private ParticleSystem particle;
 	// Use this for initialization
 	void Start () {
-		this.transform.DOMoveZ(-26.399f, 1.5f);
-		MoveToDestroy ();
+		Sequence seq = DOTween.Sequence();
+		float posZ = JudgeManager.instance.GetJudgeBotton(0).transform.position.z;
+		seq.Append(
+			this.transform.DOMoveZ(posZ, 1.5f).SetEase(Ease.Linear)
+		);
+
+		seq.Append(
+			this.transform.DOMoveZ(-175.0f, 0.5f).SetEase(Ease.Linear)//-17.6
+		);
+
+
 	}
 	
 	// Update is called once per frame
@@ -17,7 +26,7 @@ public class NotesManager : MonoBehaviour {
 		//this.transform.position += new Vector3 (0, 0, -10);
 	}
 
-	private void MoveToDestroy(){
+/*	private void MoveToDestroy(){
 		this.transform.DOMoveZ(-175.0f, 0.5f);//-17.6
-	}
+	}*/
 }
