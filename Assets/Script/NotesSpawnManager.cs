@@ -51,6 +51,9 @@ public class NotesSpawnManager : MonoBehaviour {
 	}
 
 	public int CurrentJudgeNotes(){
-		return stage - Mathf.RoundToInt(1.5f / interval);
+		return stage - Mathf.RoundToInt(1.5f / interval) ;
+	}
+	public float DifferenceOfCurrentTime(){
+		return TimeManager.instance.nowTime - (CurrentJudgeNotes() * interval);
 	}
 }

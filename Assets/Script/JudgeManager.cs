@@ -37,7 +37,8 @@ public class JudgeManager : MonoBehaviour {
 		}
 	}
 	public void Judge (JudgeButton judgeButton){
-		if (csv [judgeButton.Position, NotesSpawnManager.instance.CurrentJudgeNotes()] == "1") {
+//		if (csv [judgeButton.Position, NotesSpawnManager.instance.CurrentJudgeNotes()] == "1") {
+		if(Mathf.Abs(NotesSpawnManager.instance.DifferenceOfCurrentTime()) < 0.5f){
 			judgeButton.JudgeEffect ();
 			combo++;
 			score += 100 + combo;
