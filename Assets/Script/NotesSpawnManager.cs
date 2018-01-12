@@ -16,6 +16,7 @@ public class NotesSpawnManager : MonoBehaviour {
 
 	public int stage = 0;
 	public float interval;
+	private float NotesMoveTime = 1.5f;
 
 
 	// Use this for initialization
@@ -32,7 +33,8 @@ public class NotesSpawnManager : MonoBehaviour {
 
 	IEnumerator Spawn () {
 		yield return new WaitForSeconds (1.0f);
-		yield return new WaitForSeconds (JudgeManager.instance.musicStart - 1.5f);
+		yield return new WaitForSeconds (JudgeManager.instance.musicStart - NotesMoveTime);
+		//yield return new WaitForSeconds (TimeManager.instance.musicStart);
 		csv = CSVReader.SplitCsvGrid (csvFile.text);
 
 		stage = 0;
@@ -51,7 +53,7 @@ public class NotesSpawnManager : MonoBehaviour {
 	}
 
 	public int CurrentJudgeNotes(){
-		return stage - Mathf.RoundToInt(1.5f / interval) ;
+		return stage - Mathf.RoundToInt(NotesMoveTime / interval) ;
 	}
 	public float DifferenceOfCurrentTime(){
 		return TimeManager.instance.nowTime - (CurrentJudgeNotes() * interval);

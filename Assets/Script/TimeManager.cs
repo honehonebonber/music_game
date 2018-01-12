@@ -11,7 +11,7 @@ public class TimeManager : MonoBehaviour {
 	private Text startLabel;
 	[SerializeField]
 	private Text timeText;
-	public float musicStart = 4.0f;
+	public float musicStart;
 	public float nowTime;
 	// 処理の時は (Time.time - musicStart);
 	// Use this for initialization
