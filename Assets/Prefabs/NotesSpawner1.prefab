@@ -73,3 +73,5 @@ MonoBehaviour:
   releaseNotesPrefab: {fileID: 0}
   notesPosition: 0
   csvFile: {fileID: 4900000, guid: e1d3a2fb3b819459fa0e665b9dc1b129, type: 3}
+  stage: 0
+  interval: 0

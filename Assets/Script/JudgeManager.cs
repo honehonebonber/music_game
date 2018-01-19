@@ -27,21 +27,12 @@ public class JudgeManager : MonoBehaviour {
 		highScore = PlayerPrefs.GetInt("HighScore");
 	}
 
-	void Update(){
-		if (score > highScore) {
-			//ハイスコア更新
-			highScore = score;
-			//ハイスコアを保存
-			PlayerPrefs.SetInt("HighScore", highScore);
-			PlayerPrefs.Save();
-		}
-	}
 	public void Judge (JudgeButton judgeButton){
 //		if (csv [judgeButton.Position, NotesSpawnManager.instance.CurrentJudgeNotes()] == "1") {
-		if(Mathf.Abs(NotesSpawnManager.instance.DifferenceOfCurrentTime()) < 0.5f){
-			judgeButton.JudgeEffect ();
-			combo++;
-			score += 100 + combo;
-		}
+		// if(Mathf.Abs(NotesManager.instance.DifferenceOfCurrentTime()) < 0.5f){
+		// 	judgeButton.JudgeEffect ();
+		// 	combo++;
+		// 	score += 100 + combo;
+		// }
 	}
 }
