@@ -7,7 +7,8 @@ public class SoundManager
 
 	[SerializeField] private AudioSource audioSource;
 
-	public void Play () {
+	public void Play (AudioClip bgm) {
+		audioSource.clip = bgm;
 		audioSource.Play();	
 	}
 

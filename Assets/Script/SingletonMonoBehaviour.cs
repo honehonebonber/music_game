@@ -1,90 +1,37 @@
-﻿//  SingletonMonoBehaviour.cs
-//  http://kan-kikuchi.hatenablog.com/entry/SingletonMonoBehaviour
-//
-//  Created by kan.kikuchi on 2016.04.19.
-
 using UnityEngine;
+using System.Collections;
 
-/// <summary>
-/// MonoBehaviourを継承し、初期化メソッドを備えたシングルトンなクラス
-/// </summary>
-public class SingletonMonoBehaviour<T> : MonoBehaviourWithInit where T : MonoBehaviourWithInit
-{
+public class SingletonMonoBehaviour<T> 
+: MonoBehaviour where T : SingletonMonoBehaviour<T> {
 
-	//インスタンス
-	private static T _instance;
-
-	//インスタンスを外部から参照する用(getter)
-	public static T Instance {
+	protected static T Instance;
+	public static T instance {
 		get {
-			//インスタンスがまだ作られていない
-			if (_instance == null) {
+			if (Instance == null) {
+				Instance = (T)FindObjectOfType (typeof(T));
 
-				//シーン内からインスタンスを取得
-				_instance = (T)FindObjectOfType (typeof(T));
-
-				//シーン内に存在しない場合はエラー
-				if (_instance == null) {
-					Debug.LogError (typeof(T) + " is nothing");
-				}
-				//発見した場合は初期化
-				else {
-					_instance.InitIfNeeded ();
+				if (Instance == null) {
+					Debug.LogWarning (typeof(T) + " is nothing");
 				}
 			}
-			return _instance;
+			return Instance;
 		}
 	}
 
-	//=================================================================================
-	//初期化
-	//=================================================================================
+	protected void Awake () {
+		CheckInstance();
+	}
 
-	protected sealed override void Awake ()
-	{
-		//存在しているインスタンスが自分であれば問題なし
-		if (this == Instance) {
-			return;
+	protected bool CheckInstance () {
+		if (Instance == null) {
+			Instance = (T)this;
+			return true;
+		} 
+		else if (instance == this) {
+			return true;
 		}
 
-		//自分じゃない場合は重複して存在しているので、エラー
-		Debug.LogWarning (typeof(T) + " is duplicated");
-		Destroy (this.gameObject);
+		Destroy(this);
+		return false;
 	}
-
-}
-
-/// <summary>
-/// 初期化メソッドを備えたMonoBehaviour
-/// </summary>
-public class MonoBehaviourWithInit : MonoBehaviour
-{
-
-	//初期化したかどうかのフラグ(一度しか初期化が走らないようにするため)
-	private bool _isInitialized = false;
-
-	/// <summary>
-	/// 必要なら初期化する
-	/// </summary>
-	public void InitIfNeeded ()
-	{
-		if (_isInitialized) {
-			return;
-		}
-		Init ();
-		_isInitialized = true;
-	}
-
-	/// <summary>
-	/// 初期化(Awake時かその前の初アクセス、どちらかの一度しか行われない)
-	/// </summary>
-	protected virtual void Init ()
-	{
-	}
-
-	//sealed overrideするためにvirtualで作成
-	protected virtual void Awake ()
-	{
-	}
-
 }

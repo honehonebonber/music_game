@@ -7,4 +7,6 @@ public class ResourceManager
 
 	[SerializeField] private GameObject goodJudgePartice;
 
+	public AudioClip testMusic;
+
 }

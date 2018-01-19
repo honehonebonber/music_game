@@ -5,11 +5,16 @@ using UnityEngine;
 public class GameManager 
 : SingletonMonoBehaviour<GameManager> {
 
+	const float startTime = 5.0f;
+
 	[SerializeField] public int highScore;
 	const string HighScoreSaveKey = "HighScoreSaveKey";
 	
-	private void Start () {
+	private IEnumerator Start () {
 		highScore = PlayerPrefs.GetInt(HighScoreSaveKey);
+		yield return new WaitForSeconds (startTime);
+		SoundManager.instance.Play(ResourceManager.instance.testMusic);
+		TimeManager.MusicStart();
 	}
 
 	public void SetScore (int score) {
