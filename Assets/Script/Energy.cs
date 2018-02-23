@@ -9,7 +9,7 @@ public class Energy : MonoBehaviour {
 	[SerializeField] private Text energyText;
 	// Use this for initialization
 	void Start () {
-		energy = GameManager.instance.user.musicResults [0].energy;
+		//energy = GameManager.instance.user.musicResults [0].energy;
 		energyText.text = (energy +"/300");
 	}
 	

@@ -586,35 +586,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1018370532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1e2006bb3ad418fb3cbca667b5800b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0949e7da76faa40e7bc5af2535d23253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  user:
-    name: 
-    musicResults:
-    - musicID: 0
-      highScore: 0
-      energy: 0
-    - musicID: 1
-      highScore: 0
-      energy: 0
-    - musicID: 2
-      highScore: 0
-      energy: 0
-    - musicID: 3
-      highScore: 0
-      energy: 0
-    - musicID: 4
-      highScore: 0
-      energy: 0
-    - musicID: 5
-      highScore: 0
-      energy: 0
-    - musicID: 6
-      highScore: 0
-      energy: 0
-    eventID: 0
-    tutorial: 1
 --- !u!4 &1018370534
 Transform:
   m_ObjectHideFlags: 0
