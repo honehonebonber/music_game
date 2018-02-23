@@ -5,6 +5,8 @@ using UnityEngine;
 public class NotesManager 
 : SingletonMonoBehaviour<NotesManager> {
 
+	[SerializeField] private Transform[] spawnPoints;
+
 	public GameObject notesPrefab;
 	public GameObject longNotesPrefab;
 	public GameObject releaseNotesPrefab;
@@ -12,35 +14,41 @@ public class NotesManager
 	public string[,] csv;
 	public TextAsset csvFile;
 
-	public int stage = 0;
-	public float interval;
-	private float NotesMoveTime = 1.5f;
+	private bool isStart = false;
+	private int stage = 0;
+	private float interval;
 
-	IEnumerator Spawn () {
-		yield return new WaitForSeconds (1.0f);
-		yield return new WaitForSeconds (JudgeManager.instance.musicStart - NotesMoveTime);
-		//yield return new WaitForSeconds (TimeManager.instance.musicStart);
+	public float NextSpawnTime {
+		get {
+			return (stage + 1) * interval;
+		}
+	}
+
+	public void SpawnStart () {
 		csv = CSVReader.SplitCsvGrid (csvFile.text);
-
 		stage = 0;
 		int bpm = int.Parse (csv [0, 0]);
 		interval = 1 / (bpm / 60.0f) / 2;
 		print (interval);
-		//1.5秒前に生成
-		while (true) {
-			yield return new WaitForSeconds (interval);
+		isStart = true;
+	}
+
+	private void Update () {
+		if (!isStart) return;
+		if (TimeManager.ElapsedTime > NextSpawnTime) {
 			stage += 1;
-			if (csv [notesPosition, stage] == "1") {
-				Instantiate (notesPrefab, this.transform.position, Quaternion.identity);
+			for (int i=0; i<6; i++) {
+				if (csv[i, stage] == "1") {
+					SpawnNotes(i);
+				}
 			}
 		}
-
 	}
 
-	public int CurrentJudgeNotes(){
-		return stage - Mathf.RoundToInt(NotesMoveTime / interval) ;
+	private void SpawnNotes (int line) {
+		var obj = Instantiate (notesPrefab);
+		obj.transform.position = spawnPoints[line].position;
+		var notes = obj.GetComponent<NotesController>();
+		notes.SetUp(line, stage, spawnPoints[line]);
 	}
-	// public float DifferenceOfCurrentTime(){
-	//	 return TimeManager.instance.nowTime - (CurrentJudgeNotes() * interval);
-	// }
 }

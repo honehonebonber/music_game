@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager 
 : SingletonMonoBehaviour<GameManager> {
 
-	const float startTime = 5.0f;
+	const float startTime = 3.0f;
 
 	[SerializeField] public int highScore;
 	const string HighScoreSaveKey = "HighScoreSaveKey";
@@ -13,6 +13,8 @@ public class GameManager
 	private IEnumerator Start () {
 		highScore = PlayerPrefs.GetInt(HighScoreSaveKey);
 		yield return new WaitForSeconds (startTime);
+		NotesManager.instance.SpawnStart();
+		yield return new WaitForSeconds (NotesController.ToMarkerDuration);
 		SoundManager.instance.Play(ResourceManager.instance.testMusic);
 		TimeManager.MusicStart();
 	}
