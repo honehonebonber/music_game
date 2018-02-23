@@ -19,6 +19,14 @@ public class TimeManager : SingletonMonoBehaviour<TimeManager> {
 		startTime = Time.time;
 	}
 
+	public static void MusicPauce(){
+		isPlaying = false;
+	}
+
+	public static void MusicReStart(){
+		isPlaying = true;
+	}
+
 	public static void MusicStop () {
 		isPlaying = false;
 		elapsedTime = 0;
