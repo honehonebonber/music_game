@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class MusicSelectPopup : MonoBehaviour {
 
 	[SerializeField] private Button cancelButton, okButton;
+	[SerializeField] private Text titleLabel;
+	int selectMusicID;
+	private MusicData musicData;
 
 	private void Awake () {
 		cancelButton.onClick.AddListener (() => {
@@ -17,8 +20,10 @@ public class MusicSelectPopup : MonoBehaviour {
 		});
 	}
 
-	public void Open (/*int musicID*/) {
+	public void Open (MusicData data) {
 		gameObject.SetActive (true);
+		musicData = data;
+		titleLabel.text = data.name;
 	}
 
 }

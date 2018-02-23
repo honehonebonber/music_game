@@ -10,6 +10,8 @@ public class MusicSelect : MonoBehaviour {
 	[SerializeField] GameObject canvas;
 	private bool startOrBack;
 
+	[SerializeField] private List<MusicData> musics;
+
 	[SerializeField] private Button
 		button1,
 		button2,
@@ -22,22 +24,22 @@ public class MusicSelect : MonoBehaviour {
 	void Start () {
 		startOrBack = false;
 		button1.onClick.AddListener (() => {
-			musicSelectPopup.Open();
+			musicSelectPopup.Open(musics[0]);
 		});
 		button2.onClick.AddListener (() => {
-			musicSelectPopup.Open();
+			musicSelectPopup.Open(musics[1]);
 		});
 		button3.onClick.AddListener (() => {
-			musicSelectPopup.Open();
+			musicSelectPopup.Open(musics[2]);
 		});
 		button4.onClick.AddListener (() => {
-			musicSelectPopup.Open();
+			musicSelectPopup.Open(musics[3]);
 		});
 		button5.onClick.AddListener (() => {
-			musicSelectPopup.Open();
+			musicSelectPopup.Open(musics[4]);
 		});
 		button6.onClick.AddListener (() => {
-			musicSelectPopup.Open();
+			musicSelectPopup.Open(musics[5]);
 		});
 	}
 	

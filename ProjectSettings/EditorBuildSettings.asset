@@ -23,3 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Title.unity
     guid: 76080ff356e3d42598a3e41fd80eb85a
+  - enabled: 1
+    path: Assets/Scene/Event.unity
+    guid: 28e57e5fabf0242b0a568c47e5f35de8
