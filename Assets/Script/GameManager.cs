@@ -6,20 +6,28 @@ using UnityEngine.SceneManagement;
 public class GameManager 
 : SingletonMonoBehaviour<GameManager> {
 
-	const float startTime = 5.0f;
-	private int highScore = 0;
+	const float startTime = 3.0f;
 	public User user;
 	const string _SaveKey = "UserData";
 	public static GameManager instance;
+	[SerializeField] private int highScore;
+	const string HighScoreSaveKey = "HighScoreSaveKey";
 	
 	private IEnumerator Start () {
 		instance = this;
-		string json = PlayerPrefs.GetString(_SaveKey);
-		user = JsonUtility.FromJson<User>(json);
-		/*yield return new WaitForSeconds (startTime);
-		SoundManager.instance.Play(ResourceManager.instance.testMusic);
-		TimeManager.MusicStart();
-		SceneManager.LoadScene("Result");*/
+		string json = PlayerPrefs.GetString (_SaveKey);
+		user = JsonUtility.FromJson<User> (json);
+		highScore = PlayerPrefs.GetInt (HighScoreSaveKey);
+
+		yield return new WaitForSeconds (startTime);
+		NotesManager.instance.SpawnStart ();
+		yield return new WaitForSeconds (NotesController.ToMarkerDuration);
+		SoundManager.instance.Play (ResourceManager.instance.testMusic);
+		TimeManager.MusicStart ();
+	}
+
+	public void ToResult() {
+		SceneManager.LoadScene("Result");
 	}
 
 	public void SetScore (int score) {
