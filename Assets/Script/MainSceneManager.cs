@@ -22,6 +22,8 @@ public class MainSceneManager
 		yield return new WaitForSeconds (NotesController.ToMarkerDuration);
 		SoundManager.instance.Play (ResourceManager.instance.testMusic);
 		TimeManager.MusicStart ();
+		yield return new WaitForSeconds (10.0f);
+		ToResult ();
 	}
 
 	public void ToResult() {

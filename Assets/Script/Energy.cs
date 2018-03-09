@@ -10,7 +10,7 @@ public class Energy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//energy = GameManager.instance.user.musicResults [0].energy;
-		energyText.text = (energy +"/300");
+		//energyText.text = (energy +"/300");
 	}
 	
 	// Update is called once per frame
