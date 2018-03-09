@@ -9,14 +9,31 @@ public class JudgeButton : MonoBehaviour {
 	[SerializeField] private string keyPosition;
 	private AudioSource notes;
 
+	private Material material;
+
+	private Color 
+		defaultColor = Color.red,
+		pressedColor = Color.yellow;
+	private float colorEasing = 2f;
+
 
 	void Start () {
-		notes = GetComponent<AudioSource>();
+		material = GetComponent<Renderer>().material;
 	}
 
 
 	public void JudgeEffect(){
-		notes.PlayOneShot (notes.clip);
+	}
+
+	public void Update () {
+		material.color = Color.Lerp (
+			material.color,
+			defaultColor,
+			Time.deltaTime * colorEasing
+		);
+		if (Input.GetKeyDown(keyPosition)) {
+			material.color = pressedColor;
+		}
 	}
 
 
