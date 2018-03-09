@@ -27,12 +27,11 @@ public class JudgeManager : MonoBehaviour {
 		highScore = PlayerPrefs.GetInt("HighScore");
 	}
 
-	public void Judge (JudgeButton judgeButton){
-//		if (csv [judgeButton.Position, NotesSpawnManager.instance.CurrentJudgeNotes()] == "1") {
-		// if(Mathf.Abs(NotesManager.instance.DifferenceOfCurrentTime()) < 0.5f){
-		// 	judgeButton.JudgeEffect ();
-		// 	combo++;
-		// 	score += 100 + combo;
-		// }
+	public void Judge (NotesController notes){
+		Destroy(notes.gameObject);
+		combo += 1;
+		score += 100 + combo;
+		UIManager.instance.SetScore(score);
+		UIManager.instance.SetCombo(combo);
 	}
 }
